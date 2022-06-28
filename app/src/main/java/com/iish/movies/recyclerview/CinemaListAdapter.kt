@@ -8,6 +8,7 @@ import com.iish.movies.databinding.CustomRecyclerviewLayoutBinding
 import com.iish.movies.model.Cinema
 import com.iish.movies.recyclerview.viewholder.CinemaViewHolder
 
+
 class CinemaListAdapter : ListAdapter<Cinema, CinemaViewHolder>(DiffCallback()) {
 
     private var data: List<Cinema>? = null
@@ -35,6 +36,11 @@ class CinemaListAdapter : ListAdapter<Cinema, CinemaViewHolder>(DiffCallback()) 
         override fun areContentsTheSame(oldItem: Cinema, newItem: Cinema): Boolean {
             return oldItem == newItem
         }
+    }
+
+    override fun submitList(list: MutableList<Cinema>?) {
+        super.submitList(list?.let { ArrayList(it) })
+        //super.submitList(list)
     }
 
 }

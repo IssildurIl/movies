@@ -16,7 +16,7 @@ class App : Application() {
             .build()
     }
 
-    fun getRetrofitComponent():RetrofitComponent{
+    fun getRetrofitComponent(): RetrofitComponent {
         return retrofitComponent
     }
 }

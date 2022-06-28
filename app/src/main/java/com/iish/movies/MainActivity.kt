@@ -1,6 +1,7 @@
 package com.iish.movies
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
@@ -9,13 +10,15 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.iish.movies.databinding.ActivityMainBinding
+import com.iish.movies.model.Cinema
+import com.iish.movies.model.Image
 import com.iish.movies.recyclerview.CinemaListAdapter
 import com.iish.movies.viewmodel.MainActivityViewModel
 
 
 open class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private var adapter: CinemaListAdapter? = null
+    private var cinemaAdapter: CinemaListAdapter = CinemaListAdapter()
     private lateinit var mainActivityViewModel: MainActivityViewModel
     var contentHasLoaded = false
 
@@ -26,24 +29,25 @@ open class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initRecyclerView()
         initViewModel()
+
         setupSplashScreen(splashScreen)
     }
 
+
     private fun initRecyclerView() {
-        adapter = CinemaListAdapter()
-        val recyclerView = binding.recyclerView
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.apply {
+            adapter = cinemaAdapter
+            layoutManager = LinearLayoutManager(this@MainActivity)
+        }
     }
 
     private fun initViewModel() {
         mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         mainActivityViewModel.response.observe(this) { cinemaList ->
-            adapter?.updData(cinemaList)
-            adapter?.notifyDataSetChanged()
+            cinemaAdapter.updData(cinemaList)
+            cinemaAdapter.submitList(cinemaList.toMutableList())
             contentHasLoaded = true
         }
-        mainActivityViewModel.getCinemaFromApi()
     }
 
     private fun setupSplashScreen(splashScreen: SplashScreen) {
