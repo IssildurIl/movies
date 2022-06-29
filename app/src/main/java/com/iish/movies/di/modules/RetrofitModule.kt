@@ -10,8 +10,6 @@ import javax.inject.Singleton
 @Module
 class RetrofitModule {
 
-//    private val baseUrl = "https://api.github.com/search/"
-
     private val baseUrl = "https://api.tvmaze.com/" // shows
 
     @Provides

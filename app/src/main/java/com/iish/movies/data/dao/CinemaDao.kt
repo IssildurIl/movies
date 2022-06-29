@@ -10,6 +10,9 @@ interface CinemaDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addCinema(cinema: Cinema)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addCinemas(cinemas: List<Cinema>)
+
     @Update
     suspend fun updateCinema(cinema: Cinema)
 

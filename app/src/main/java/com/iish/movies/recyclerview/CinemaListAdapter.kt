@@ -40,7 +40,6 @@ class CinemaListAdapter : ListAdapter<Cinema, CinemaViewHolder>(DiffCallback()) 
 
     override fun submitList(list: MutableList<Cinema>?) {
         super.submitList(list?.let { ArrayList(it) })
-        //super.submitList(list)
     }
 
 }
