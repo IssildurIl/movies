@@ -1,5 +1,6 @@
-package com.iish.movies.di
+package com.iish.movies.di.modules
 
+import com.iish.movies.di.RetrofitServiceInterface
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -15,7 +16,7 @@ class RetrofitModule {
 
     @Provides
     @Singleton
-    fun getRetrofitServiceInterface(retrofit: Retrofit):RetrofitServiceInterface{
+    fun getRetrofitServiceInterface(retrofit: Retrofit): RetrofitServiceInterface {
         return retrofit.create(RetrofitServiceInterface::class.java)
     }
 

@@ -1,22 +1,22 @@
 package com.iish.movies.app
 
 import android.app.Application
-import com.iish.movies.di.DaggerRetrofitComponent
-import com.iish.movies.di.RetrofitComponent
-import com.iish.movies.di.RetrofitModule
+import com.iish.movies.di.DaggerAppComponent
+import com.iish.movies.di.AppComponent
+import com.iish.movies.di.modules.RetrofitModule
 
 class App : Application() {
 
-    private lateinit var retrofitComponent: RetrofitComponent
+    private lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
-        retrofitComponent = DaggerRetrofitComponent.builder()
+        appComponent = DaggerAppComponent.builder()
             .retrofitModule(RetrofitModule())
             .build()
     }
 
-    fun getRetrofitComponent(): RetrofitComponent {
-        return retrofitComponent
+    fun getRetrofitComponent(): AppComponent {
+        return appComponent
     }
 }
