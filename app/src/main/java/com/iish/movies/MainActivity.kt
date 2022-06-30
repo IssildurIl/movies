@@ -1,7 +1,6 @@
 package com.iish.movies
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
@@ -10,17 +9,18 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.iish.movies.databinding.ActivityMainBinding
-import com.iish.movies.model.Cinema
-import com.iish.movies.model.Image
 import com.iish.movies.recyclerview.CinemaListAdapter
+import com.iish.movies.recyclerview.ItemListener
+import com.iish.movies.recyclerview.decorators.CustomItemDecorator
 import com.iish.movies.viewmodel.MainActivityViewModel
 
 
-open class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatActivity(),ItemListener {
     private lateinit var binding: ActivityMainBinding
-    private var cinemaAdapter: CinemaListAdapter = CinemaListAdapter()
+    private var cinemaAdapter: CinemaListAdapter = CinemaListAdapter(this)
     private lateinit var mainActivityViewModel: MainActivityViewModel
-    var contentHasLoaded = false
+    private var contentHasLoaded = false
+    private var customItemDecorator: CustomItemDecorator = CustomItemDecorator()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
@@ -37,7 +37,9 @@ open class MainActivity : AppCompatActivity() {
     private fun initRecyclerView() {
         binding.recyclerView.apply {
             adapter = cinemaAdapter
-            layoutManager = LinearLayoutManager(this@MainActivity)
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            customItemDecorator.recyclerDecoration(10, 10)
+            addItemDecoration(customItemDecorator)
         }
     }
 
@@ -62,6 +64,12 @@ open class MainActivity : AppCompatActivity() {
                 }
             }
         )
+    }
+
+    override fun onClick(position: Int) {
+        cinemaAdapter?.currentList?.get(position)?.let {
+
+        }
     }
 
 }

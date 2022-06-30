@@ -9,7 +9,7 @@ import com.iish.movies.model.Cinema
 import com.iish.movies.recyclerview.viewholder.CinemaViewHolder
 
 
-class CinemaListAdapter : ListAdapter<Cinema, CinemaViewHolder>(DiffCallback()) {
+class CinemaListAdapter(private val itemListener: ItemListener) : ListAdapter<Cinema, CinemaViewHolder>(DiffCallback()) {
 
     private var data: List<Cinema>? = null
 
@@ -24,7 +24,7 @@ class CinemaListAdapter : ListAdapter<Cinema, CinemaViewHolder>(DiffCallback()) 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CinemaViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = CustomRecyclerviewLayoutBinding.inflate(inflater, parent, false)
-        return CinemaViewHolder(binding)
+        return CinemaViewHolder(binding,itemListener)
     }
 
     private class DiffCallback : DiffUtil.ItemCallback<Cinema>() {

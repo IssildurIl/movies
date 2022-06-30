@@ -5,7 +5,7 @@
         <item name="windowSplashScreenBackground">@color/orange</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_videocamera</item>
         <item name="windowSplashScreenIconBackgroundColor">@color/orange</item>
-        <item name="postSplashScreenTheme">@style/Theme.AppCompat</item>
+        <item name="postSplashScreenTheme">@style/Theme.AppCompat.NoActionBar</item>
     </style>
 
 </resources>
