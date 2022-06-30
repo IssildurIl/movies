@@ -1,9 +1,11 @@
 package com.iish.movies.model
 
+import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 @Entity
 data class Cinema(
@@ -16,6 +18,4 @@ data class Cinema(
     val image: Image,
     @SerializedName("summary")
     val summary: String
-){
-
-}
+) : Serializable

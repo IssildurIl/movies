@@ -1,5 +1,6 @@
 package com.iish.movies
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
@@ -67,8 +68,10 @@ open class MainActivity : AppCompatActivity(),ItemListener {
     }
 
     override fun onClick(position: Int) {
-        cinemaAdapter?.currentList?.get(position)?.let {
-
+        cinemaAdapter.currentList[position]?.let {
+            val intent = Intent(this, DetailedCinemaActivity::class.java)
+            intent.putExtra("cinema",it)
+            startActivity(intent)
         }
     }
 
