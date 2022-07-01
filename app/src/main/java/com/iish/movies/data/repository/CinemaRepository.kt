@@ -10,13 +10,17 @@ class CinemaRepository @Inject constructor(moviesDatabase: MoviesDatabase, priva
 
     private val cinemaDao = moviesDatabase.cinemaDao()
     val allCinema: LiveData<List<Cinema>> = cinemaDao.getAllCinema()
-
+    var findedCinema: LiveData<List<Cinema>>?=null
     suspend fun loadData() {
         val result = retrofitServiceInterface.getData()
         val requestResult = result.body()
         if (result.isSuccessful && requestResult != null) {
             cinemaDao.addCinemas(requestResult)
         }
+    }
+
+    fun findCinema(name:String){
+        findedCinema = cinemaDao.findCinema(name)
     }
 
     suspend fun addCinema(cinema: Cinema) {

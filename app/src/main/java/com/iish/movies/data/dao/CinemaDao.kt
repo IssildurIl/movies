@@ -22,4 +22,7 @@ interface CinemaDao {
     @Delete
     suspend fun deleteCinema(cinema: Cinema)
 
+    @Query("Select * from Cinema where name Like :name Order by id asc")
+    fun findCinema(name:String): LiveData<List<Cinema>>
+
 }

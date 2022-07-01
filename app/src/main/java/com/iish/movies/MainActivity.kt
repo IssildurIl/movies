@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -28,10 +29,38 @@ open class MainActivity : AppCompatActivity(),ItemListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         initRecyclerView()
         initViewModel()
-
+        initToolBar()
         setupSplashScreen(splashScreen)
+    }
+
+    private fun initToolBar(){
+        setSupportActionBar(binding.toolbar)
+        binding.searchView.setOnQueryTextListener(object: androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                mainActivityViewModel.findCinemaByName(query!!)
+                mainActivityViewModel.findedCinema?.observe(this@MainActivity) { cinemaList ->
+                    cinemaAdapter.updData(cinemaList)
+                    cinemaAdapter.submitList(cinemaList.toMutableList())
+                    contentHasLoaded = true
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+        binding.searchView.setOnCloseListener {
+            mainActivityViewModel.response.observe(this@MainActivity) { cinemaList ->
+                cinemaAdapter.updData(cinemaList)
+                cinemaAdapter.submitList(cinemaList.toMutableList())
+                contentHasLoaded = true
+            }
+            false
+        }
     }
 
 
@@ -45,7 +74,6 @@ open class MainActivity : AppCompatActivity(),ItemListener {
     }
 
     private fun initViewModel() {
-        mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         mainActivityViewModel.response.observe(this) { cinemaList ->
             cinemaAdapter.updData(cinemaList)
             cinemaAdapter.submitList(cinemaList.toMutableList())
