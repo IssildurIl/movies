@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
-import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -17,7 +16,7 @@ import com.iish.movies.recyclerview.decorators.CustomItemDecorator
 import com.iish.movies.viewmodel.MainActivityViewModel
 
 
-open class MainActivity : AppCompatActivity(),ItemListener {
+open class MainActivity : AppCompatActivity(), ItemListener {
     private lateinit var binding: ActivityMainBinding
     private var cinemaAdapter: CinemaListAdapter = CinemaListAdapter(this)
     private lateinit var mainActivityViewModel: MainActivityViewModel
@@ -36,9 +35,9 @@ open class MainActivity : AppCompatActivity(),ItemListener {
         setupSplashScreen(splashScreen)
     }
 
-    private fun initToolBar(){
+    private fun initToolBar() {
         setSupportActionBar(binding.toolbar)
-        binding.searchView.setOnQueryTextListener(object: androidx.appcompat.widget.SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 mainActivityViewModel.findCinemaByName(query!!)
                 mainActivityViewModel.findedCinema?.observe(this@MainActivity) { cinemaList ->
@@ -71,6 +70,7 @@ open class MainActivity : AppCompatActivity(),ItemListener {
             customItemDecorator.recyclerDecoration(10, 10)
             addItemDecoration(customItemDecorator)
         }
+
     }
 
     private fun initViewModel() {
@@ -98,7 +98,7 @@ open class MainActivity : AppCompatActivity(),ItemListener {
     override fun onClick(position: Int) {
         cinemaAdapter.currentList[position]?.let {
             val intent = Intent(this, DetailedCinemaActivity::class.java)
-            intent.putExtra("cinema",it)
+            intent.putExtra("cinema", it)
             startActivity(intent)
         }
     }
