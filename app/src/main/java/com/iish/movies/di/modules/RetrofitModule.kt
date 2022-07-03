@@ -1,6 +1,7 @@
 package com.iish.movies.di.modules
 
 import com.iish.movies.di.RetrofitServiceInterface
+import com.iish.movies.utils.Constants
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -9,8 +10,6 @@ import javax.inject.Singleton
 
 @Module
 class RetrofitModule {
-
-    private val baseUrl = "https://api.tvmaze.com/" // shows
 
     @Provides
     @Singleton
@@ -22,7 +21,7 @@ class RetrofitModule {
     @Singleton
     fun getRetrofitInstance(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

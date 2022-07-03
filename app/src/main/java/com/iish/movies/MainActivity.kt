@@ -40,7 +40,7 @@ open class MainActivity : AppCompatActivity(), ItemListener {
         binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 mainActivityViewModel.findCinemaByName(query!!)
-                mainActivityViewModel.findedCinema?.observe(this@MainActivity) { cinemaList ->
+                mainActivityViewModel.foundedCinema?.observe(this@MainActivity) { cinemaList ->
                     cinemaAdapter.updData(cinemaList)
                     cinemaAdapter.submitList(cinemaList.toMutableList())
                     contentHasLoaded = true

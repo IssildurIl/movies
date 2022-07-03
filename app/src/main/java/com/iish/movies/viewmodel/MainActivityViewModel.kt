@@ -15,7 +15,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     @Inject
     lateinit var cinemaRepository: CinemaRepository
     val response: LiveData<List<Cinema>> get() = cinemaRepository.allCinema
-    var findedCinema: LiveData<List<Cinema>>? = null
+    var foundedCinema: LiveData<List<Cinema>>? = null
 
     init {
         (application as App).getRetrofitComponent().inject(this)
@@ -28,6 +28,6 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
 
     fun findCinemaByName(name:String){
        cinemaRepository.findCinema(name)
-       findedCinema = cinemaRepository.findedCinema
+        foundedCinema = cinemaRepository.findedCinema
     }
 }
