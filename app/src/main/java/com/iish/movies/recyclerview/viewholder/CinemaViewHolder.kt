@@ -21,5 +21,6 @@ class CinemaViewHolder(private val binding: CustomRecyclerviewLayoutBinding, ite
             .load(cinema.image.original)
             .transform(RoundedCorners(25))
             .into(binding.movieImg)
+        binding.movieName.text = cinema.name
     }
 }

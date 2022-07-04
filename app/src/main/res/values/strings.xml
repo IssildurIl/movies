@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">movies</string>
+    <string name="more_items">еще…</string>
+    <string name="content_decr_movie_img">movie_img</string>
 </resources>

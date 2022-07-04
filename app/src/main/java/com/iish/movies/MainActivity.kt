@@ -2,21 +2,22 @@ package com.iish.movies
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.iish.movies.databinding.ActivityMainBinding
 import com.iish.movies.recyclerview.CinemaListAdapter
 import com.iish.movies.recyclerview.ItemListener
 import com.iish.movies.recyclerview.decorators.CustomItemDecorator
+import com.iish.movies.utils.CustomView
 import com.iish.movies.viewmodel.MainActivityViewModel
 
 
-open class MainActivity : AppCompatActivity(), ItemListener {
+class MainActivity : AppCompatActivity(), ItemListener {
     private lateinit var binding: ActivityMainBinding
     private var cinemaAdapter: CinemaListAdapter = CinemaListAdapter(this)
     private lateinit var mainActivityViewModel: MainActivityViewModel
@@ -64,13 +65,10 @@ open class MainActivity : AppCompatActivity(), ItemListener {
 
 
     private fun initRecyclerView() {
-        binding.recyclerView.apply {
-            adapter = cinemaAdapter
-            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            customItemDecorator.recyclerDecoration(10, 10)
-            addItemDecoration(customItemDecorator)
-        }
-
+        initializeCustomView(binding.viewNewCinema, "Новые Фильмы")
+        initializeCustomView(binding.viewLastAdded, "Последние добавленные")
+        initializeCustomView(binding.viewLastUpdates, "Последние обновления")
+        initializeCustomView(binding.viewShowNow, "Смотрят сейчас")
     }
 
     private fun initViewModel() {
@@ -101,6 +99,12 @@ open class MainActivity : AppCompatActivity(), ItemListener {
             intent.putExtra("cinema", it)
             startActivity(intent)
         }
+    }
+
+    private fun initializeCustomView(customView: CustomView, name: String) {
+        customView.setRv(cinemaAdapter, customItemDecorator)
+        customView.setSectorName(name)
+        customView.setClickableSpan()
     }
 
 }
