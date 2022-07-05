@@ -8,8 +8,7 @@ import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
 import com.iish.movies.databinding.ActivityMainBinding
-import com.iish.movies.databinding.FragmentStartCinemaBinding
-import com.iish.movies.fragments.start_fragment.StartCinemaViewModel
+import com.iish.movies.fragments.start.StartCinemaViewModel
 
 
 class MainActivity : AppCompatActivity() {

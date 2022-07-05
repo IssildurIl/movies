@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.start_fragment.StartCinemaFragment">
+    tools:context=".fragments.start.StartCinemaFragment">
 
     <ScrollView
         android:layout_width="0dp"

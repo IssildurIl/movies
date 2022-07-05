@@ -1,4 +1,4 @@
-package com.iish.movies.fragments.start_fragment
+package com.iish.movies.fragments.start
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.iish.movies.databinding.FragmentStartCinemaBinding
 import com.iish.movies.recyclerview.CinemaListAdapter
 import com.iish.movies.recyclerview.ItemListener
@@ -18,10 +19,6 @@ class StartCinemaFragment : Fragment(), ItemListener {
     private lateinit var binding: FragmentStartCinemaBinding
     private var customItemDecorator: CustomItemDecorator = CustomItemDecorator()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -84,7 +81,8 @@ class StartCinemaFragment : Fragment(), ItemListener {
 
     override fun onClick(position: Int) {
         cinemaAdapter.currentList[position]?.let {
-
+            val action = StartCinemaFragmentDirections.actionStartCinemaFragmentToDetailedCinemaFragment(it)
+            findNavController().navigate(action)
         }
     }
 

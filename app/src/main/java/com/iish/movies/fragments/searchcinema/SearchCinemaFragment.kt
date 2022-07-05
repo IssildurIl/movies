@@ -1,4 +1,4 @@
-package com.iish.movies.fragments
+package com.iish.movies.fragments.searchcinema
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

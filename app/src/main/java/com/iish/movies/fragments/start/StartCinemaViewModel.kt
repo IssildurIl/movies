@@ -1,4 +1,4 @@
-package com.iish.movies.fragments.start_fragment
+package com.iish.movies.fragments.start
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

@@ -8,17 +8,29 @@
 
     <fragment
         android:id="@+id/startCinemaFragment"
-        android:name="com.iish.movies.fragments.start_fragment.StartCinemaFragment"
-        android:label="fragment_start_cinema"
-        tools:layout="@layout/fragment_start_cinema" />
+        android:name="com.iish.movies.fragments.start.StartCinemaFragment"
+        android:label="Start cinema"
+        tools:layout="@layout/fragment_start_cinema" >
+        <action
+            android:id="@+id/action_startCinemaFragment_to_detailedCinemaFragment"
+            app:destination="@id/detailedCinemaFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchCinemaFragment"
-        android:name="com.iish.movies.fragments.SearchCinemaFragment"
+        android:name="com.iish.movies.fragments.searchcinema.SearchCinemaFragment"
         android:label="fragment_search_cinema"
         tools:layout="@layout/fragment_search_cinema" />
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.iish.movies.fragments.AccountFragment"
+        android:name="com.iish.movies.fragments.account.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/detailedCinemaFragment"
+        android:name="com.iish.movies.fragments.details.DetailedCinemaFragment"
+        android:label="DetailedCinemaFragment">
+        <argument
+            android:name="currentCinema"
+            app:argType="com.iish.movies.model.Cinema" />
+    </fragment>
 </navigation>

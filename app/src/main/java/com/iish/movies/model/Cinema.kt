@@ -1,6 +1,5 @@
 package com.iish.movies.model
 
-import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey

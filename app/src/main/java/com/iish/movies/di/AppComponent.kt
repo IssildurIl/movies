@@ -4,7 +4,7 @@ import android.content.Context
 import com.iish.movies.data.repository.CinemaRepository
 import com.iish.movies.di.modules.DataBaseModule
 import com.iish.movies.di.modules.RetrofitModule
-import com.iish.movies.fragments.start_fragment.StartCinemaViewModel
+import com.iish.movies.fragments.start.StartCinemaViewModel
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

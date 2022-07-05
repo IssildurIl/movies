@@ -1,4 +1,4 @@
-package com.iish.movies.fragments
+package com.iish.movies.fragments.account
 
 import android.os.Bundle
 import android.view.LayoutInflater
