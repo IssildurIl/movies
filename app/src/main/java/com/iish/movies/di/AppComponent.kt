@@ -5,7 +5,6 @@ import com.iish.movies.data.repository.CinemaRepository
 import com.iish.movies.di.modules.DataBaseModule
 import com.iish.movies.di.modules.RetrofitModule
 import com.iish.movies.fragments.start_fragment.StartCinemaViewModel
-import com.iish.movies.viewmodel.MainActivityViewModel
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -13,8 +12,6 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [RetrofitModule::class, DataBaseModule::class])
 interface AppComponent {
-
-    fun inject(mainActivityViewModel: MainActivityViewModel)
 
     fun inject(cinemaRepository: CinemaRepository)
 
