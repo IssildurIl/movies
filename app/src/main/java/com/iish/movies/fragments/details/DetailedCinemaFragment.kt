@@ -1,13 +1,14 @@
 package com.iish.movies.fragments.details
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.text.Html
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.iish.movies.R
 import com.iish.movies.databinding.FragmentDetailedCinemaBinding
 import com.iish.movies.model.Cinema
 
@@ -19,6 +20,11 @@ class DetailedCinemaFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.navigation, menu)
     }
 
     override fun onCreateView(
@@ -31,11 +37,11 @@ class DetailedCinemaFragment : Fragment() {
     }
 
     private fun setData(cinema: Cinema) {
-        binding.movieTitle.text = cinema.name
-        binding.movieDesc.text = cinema.summary
+//        binding.movieTitle.text = cinema.name
+        binding.movieDesc.text =  Html.fromHtml(cinema.summary).toString()
         Glide.with(binding.root)
-            .load(cinema.image.medium)
-            .transform(CenterInside())
+            .load(cinema.image.original)
+            .transform(CenterCrop())
             .into(binding.movieImg)
     }
 
